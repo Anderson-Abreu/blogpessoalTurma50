@@ -47,7 +47,7 @@ tipoUsuario: string
     if(this.user.senha.length<5){
       alert('preencha o campo senha com pelo menos 5 caracters')
     }else if(this.user.senha != this.confirmarSenha){
-      alert('As senhas estão incorretas!!!')
+      alert('As senhas estão incorretas!!!') 
     }else{
       this.authService.cadastrar(this.user).subscribe((resp:User)=>{
         this.user = resp
