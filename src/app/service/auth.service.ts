@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment.prod';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/User';
@@ -14,6 +14,11 @@ export class AuthService {
     private http: HttpClient
   ) { }
 
+  /*token = { 
+    headers: new HttpHeaders().set('Authorization', environment.token)
+  }
+*/
+
   entrar(userLogin: UserLogin): Observable<UserLogin>{
     return this.http.post<UserLogin>('https://backendblogpessoal.herokuapp.com/usuarios/logar',userLogin)
   }
@@ -22,6 +27,12 @@ export class AuthService {
     return this.http.post<User>('https://backendblogpessoal.herokuapp.com/usuarios/cadastrar',user)
 
   }
+
+ /* editar(user: User): Observable<User>{
+    return this.http.put<User>('https://backendblogpessoal.herokuapp.com/usuarios/atualizar',user, this.token)
+
+  }
+*/
 
   getByIdUser(id: number): Observable<User>{
     return this.http.get<User>(`https://backendblogpessoal.herokuapp.com/usuarios/${id}`)
