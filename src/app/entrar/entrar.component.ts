@@ -3,6 +3,7 @@ import { UserLogin } from './../model/UserLogin';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { AlertasService } from '../service/alertas.service';
 
 @Component({
   selector: 'app-entrar',
@@ -15,7 +16,8 @@ export class EntrarComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private alerta: AlertasService
   ) { }
 
   ngOnInit(){
@@ -39,7 +41,7 @@ entrar(){
     },erro=>{
       if(erro.status==500)
       {
-        alert('usuario ou senha estão incorretos')
+        this.alerta.showAlertDanger('usuario ou senha estão incorretos')
       }
 
   })
